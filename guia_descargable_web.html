@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Gratuita · Tanconectados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "DM Sans", sans-serif; background: #D6EAF2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px 16px 60px; }
+
+  .card {
+    width: 100%; max-width: 480px;
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(27,58,80,0.15);
+  }
+
+  /* HEADER */
+  .card-header {
+    background: #1B3A50;
+    padding: 36px 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header .deco1 { position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.1); top: -60px; right: -60px; }
+  .card-header .deco2 { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(217,79,122,0.15); bottom: -30px; left: -30px; }
+  .card-header .badge { display: inline-block; background: rgba(217,79,122,0.2); border: 1px solid rgba(217,79,122,0.4); color: #F07AAA; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 30px; margin-bottom: 16px; font-weight: 600; }
+  .card-header h1 { font-family: "Playfair Display", serif; font-size: 30px; color: #fff; line-height: 1.2; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 2; }
+  .card-header h1 em { color: #F07AAA; font-style: italic; }
+  .card-header p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.65; position: relative; z-index: 2; }
+
+  /* BENEFICIOS */
+  .beneficios { padding: 28px 32px 20px; border-bottom: 1px solid rgba(27,58,80,0.08); }
+  .beneficios .ben-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #D94F7A; font-weight: 600; margin-bottom: 14px; }
+  .ben-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+  .ben-dot { width: 8px; height: 8px; border-radius: 50%; background: #D94F7A; flex-shrink: 0; margin-top: 6px; }
+  .ben-item p { font-size: 14px; color: #1B3A50; line-height: 1.6; }
+
+  /* FORMULARIO */
+  .form-section { padding: 28px 32px 32px; }
+  .form-section .form-title { font-family: "Playfair Display", serif; font-size: 20px; color: #1B3A50; font-weight: 700; margin-bottom: 6px; }
+  .form-section .form-sub { font-size: 14px; color: #5A7A8A; margin-bottom: 22px; line-height: 1.6; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-group label { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #1B3A50; font-weight: 600; }
+  .form-group input, .form-group select {
+    padding: 14px 16px;
+    border: 1.5px solid rgba(27,58,80,0.15);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: "DM Sans", sans-serif;
+    color: #1B3A50;
+    background: #FAF7F2;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-color: #D94F7A;
+  }
+  .form-group input::placeholder { color: rgba(27,58,80,0.35); }
+
+  .privacy { font-size: 12px; color: #5A7A8A; line-height: 1.6; margin-bottom: 20px; text-align: center; }
+  .privacy span { color: #D94F7A; }
+
+  .btn-submit {
+    width: 100%;
+    background: #D94F7A;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 15px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-submit:hover { background: #C03060; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(217,79,122,0.3); }
+
+  /* ÉXITO */
+  .success { display: none; padding: 40px 32px; text-align: center; flex-direction: column; align-items: center; gap: 16px; }
+  .success .check { width: 64px; height: 64px; border-radius: 50%; background: rgba(217,79,122,0.1); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto; }
+  .success h2 { font-family: "Playfair Display", serif; font-size: 24px; color: #1B3A50; font-weight: 700; }
+  .success p { font-size: 15px; color: #5A7A8A; line-height: 1.7; }
+  .success .whatsapp-btn {
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 24px;
+    font-size: 14px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  .page-footer { margin-top: 20px; text-align: center; }
+  .page-footer p { font-size: 12px; color: rgba(27,58,80,0.5); }
+  .page-footer span { color: #D94F7A; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="card-header">
+    <div class="deco1"></div><div class="deco2"></div>
+    <div class="badge">🎁 Recurso gratuito</div>
+    <h1>Guía de Hábitos Digitales<br><em>para adolescentes</em></h1>
+    <p>Descargala gratis y compartísela a tus hijos. 14 hábitos digitales saludables explicados en su idioma.</p>
+  </div>
+
+  <!-- BENEFICIOS -->
+  <div class="beneficios">
+    <div class="ben-label">¿Qué incluye?</div>
+    <div class="ben-item"><div class="ben-dot"></div><p>Qué les pasa en el cerebro con las pantallas — explicado de forma cercana</p></div>
+    <div class="ben-item"><div class="ben-dot"></div><p>Cómo actuar frente a redes sociales, grupos de WhatsApp y retos virales</p></div>
+    <div class="ben-item"><div class="ben-dot"></div><p>Qué hacer con las apuestas online, el contacto con desconocidos y la huella digital</p></div>
+    <div class="ben-item"><div class="ben-dot"></div><p>14 hábitos digitales saludables concretos y fáciles de aplicar</p></div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="form-section" id="form-section">
+    <div class="form-title">Recibí la guía ahora</div>
+    <div class="form-sub">Completá tus datos y te la enviamos por WhatsApp de manera gratuita.</div>
+
+    <div class="form-group">
+      <label>Tu nombre</label>
+      <input type="text" id="nombre" placeholder="¿Cómo te llamás?">
+    </div>
+
+    <div class="form-group">
+      <label>WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="Ej: 1150418957">
+    </div>
+
+    <div class="form-group">
+      <label>¿De dónde sos?</label>
+      <input type="text" id="ubicacion" placeholder="Ej: Buenos Aires, Córdoba, Mendoza...">
+    </div>
+
+    <div class="form-group">
+      <label>¿Tenés hijos adolescentes?</label>
+      <select id="hijos">
+        <option value="">Seleccioná una opción</option>
+        <option value="si_adolescentes">Sí, adolescentes (13-18 años)</option>
+        <option value="si_preadolescentes">Sí, preadolescentes (10-12 años)</option>
+        <option value="si_ambos">Sí, de distintas edades</option>
+        <option value="no_todavia">Todavía no pero me interesa el tema</option>
+        <option value="profesional">Soy docente o profesional de la salud</option>
+      </select>
+    </div>
+
+    <div class="privacy">
+      Tu información es confidencial. <span>No compartimos tus datos con nadie.</span><br>
+      Solo te vamos a contactar para enviarte la guía.
+    </div>
+
+    <button class="btn-submit" onclick="enviar()">
+      📥 Quiero mi guía gratuita
+    </button>
+  </div>
+
+  <!-- ÉXITO -->
+  <div class="success" id="success">
+    <div class="check">💙</div>
+    <h2>¡Gracias!</h2>
+    <p>En breve te enviamos la guía por WhatsApp.<br>Mientras tanto podés seguirnos en Instagram para más contenido de crianza digital.</p>
+    <a class="whatsapp-btn" href="https://wa.me/5491150418957?text=Hola%20Tili!%20Me%20registré%20para%20recibir%20la%20guía%20gratuita%20de%20hábitos%20digitales%20para%20adolescentes." target="_blank">
+      💬 Escribinos por WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  <p>Lic. Tili Peña · Psicóloga clínica · MN 36.601<br><span>@tanconectados</span></p>
+</div>
+
+<script>
+  function enviar() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const hijos = document.getElementById('hijos').value;
+
+    const ubicacion = document.getElementById('ubicacion').value.trim();
+
+    if (!nombre || !whatsapp || !ubicacion || !hijos) {
+      alert('Por favor completá todos los campos para recibir la guía.');
+      return;
+    }
+
+    // Guardar en Google Sheets via URL (reemplazar con tu URL de Google Forms)
+    // Por ahora abre WhatsApp directo con los datos
+    const mensaje = encodeURIComponent(
+      `¡Hola Tili! Me registré para recibir la guía gratuita.\n\nNombre: ${nombre}\nWhatsApp: ${whatsapp}\nUbicación: ${ubicacion}\nHijos: ${hijos}`
+    );
+
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+
+    // Abrir WhatsApp con los datos pre-cargados
+    setTimeout(() => {
+      window.open(`https://wa.me/5491150418957?text=${mensaje}`, '_blank');
+    }, 1500);
+  }
+</script>
+
+</body>
+</html>
